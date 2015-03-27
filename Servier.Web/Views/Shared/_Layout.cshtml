@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico" type="image/x-icon">
+
+    <title>@ViewBag.Title | Servier Vietnam</title>
+
+    <!--common-->
+    @Styles.Render("~/Content/css")
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    @Scripts.Render("~/bundles/ie-9")
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <!-- left side start-->
+        <div class="left-side sticky-left-side">
+            <!--logo and iconic logo start-->
+            <div class="logo">
+                <a href="index.html"><img src="~/Content/images/logo.png" alt="Servier Vietnam"></a>
+            </div>
+
+            <div class="logo-icon text-center">
+                <a href="index.html"><img src="~/Content/images/logo_icon.png" alt="Servier Vietnam"></a>
+            </div>
+            <!--logo and iconic logo end-->
+
+            <div class="left-side-inner">
+                <!--sidebar nav start-->
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-home"></i> <span>Home</span></a>
+                    </li>
+
+                    <li class="menu-list">
+                        <a href="#"><i class="fa fa-money"></i> <span>Budget</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="budget_list.html">Budget List</a></li>
+                            <li><a href="budget_new.html">New Budget</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#"><i class="fa fa-book"></i> <span>Advance</span></a>
+                        <ul class="sub-menu-list">
+                            <li class="active"><a href="advance_list.html">Advance List</a></li>
+                            <li><a href="advance_new.html">New Advance</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#"><i class="fa fa-book"></i> <span>Actual</span></a>
+                        <ul class="sub-menu-list">
+                            <li class="active"><a href="actual_list.html">Actual List</a></li>
+                            <li><a href="actual_new-salesforce.html">New Actual by Sales Force</a></li>
+                            <li><a href="actual_new-finance.html">New Actual by Finance</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-database"></i> <span>Information</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="user_management.html">User Management</a></li>
+                            <li><a href="product_management.html">Product Management</a></li>
+                            <li><a href="hospital_management.html">Hospital Management</a></li>
+                            <li><a href="pharmacy_management.html">Pharmacy Management</a></li>
+                            <li><a href="activity_management.html">Activity Management</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-bar-chart-o"></i> <span>Report</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="budget_overview.html">Budget Overview</a></li>
+                            <li><a href="#">Categories Filter</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="settings.html"><i class="fa fa-cog"></i> <span>Settings</span></a>
+                    </li>
+                </ul>
+                <!--sidebar nav end-->
+
+            </div>
+        </div>
+        <!-- left side end-->
+        <!-- main content start-->
+        <div class="main-content">
+            <!-- header section start-->
+            <div class="header-section">
+                <!--toggle button start-->
+                <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+                <!--toggle button end-->
+                <!--notification menu start -->
+                <div class="menu-right">
+                    <ul class="notification-menu">
+                        <li>
+                            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Content/images/photos/user-avatar.png" alt="" />
+                                John Doe
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                                <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                                <li><a href="login.html"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--notification menu end -->
+
+            </div>
+            <!-- header section end-->
+
+            <!--body wrapper start-->
+
+            @RenderBody()
+
+            <!--body wrapper end-->
+
+            <!--footer section start-->
+            <footer>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>2015 © <a href="http://servier.vn" target="_blank">Servier Vietnam</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right">Powered by <a href="http://ndex.net" target="_blank">Ndex Technologies</a></p>
+                    </div>
+                </div>
+            </footer>
+            <!--footer section end-->
+        </div>
+        <!-- main content end-->
+    </section>
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatable")
+    @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/common")
+
+</body>
+</html>

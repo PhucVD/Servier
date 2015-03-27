@@ -1,0 +1,898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ServierModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="ActivityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActivityGroupID" Type="int" Nullable="false" />
+          <Property Name="ActivityType" Type="int" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ActivityGroup">
+          <Key>
+            <PropertyRef Name="ActivityGroupID" />
+          </Key>
+          <Property Name="ActivityGroupID" Type="int" Nullable="false" />
+          <Property Name="ActivityGroupCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ActivityGroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActivityGroupType" Type="int" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Actual">
+          <Key>
+            <PropertyRef Name="ActualID" />
+          </Key>
+          <Property Name="ActualID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="datetime" Nullable="false" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProcessLevel" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="InputType" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="ActualByFinance">
+          <Key>
+            <PropertyRef Name="ActualByFinanceID" />
+          </Key>
+          <Property Name="ActualByFinanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="ActualByFinanceDetail">
+          <Key>
+            <PropertyRef Name="ActualByFinanceDetailID" />
+          </Key>
+          <Property Name="ActualByFinanceDetailID" Type="int" Nullable="false" />
+          <Property Name="ActualByFinanceID" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="UserID" Type="image" />
+          <Property Name="AmountByClearance" Type="int" />
+          <Property Name="AmountByCreditCard" Type="int" />
+          <Property Name="AmountByVoucher" Type="int" />
+        </EntityType>
+        <EntityType Name="ActualDetail">
+          <Key>
+            <PropertyRef Name="ActualDetailID" />
+          </Key>
+          <Property Name="ActualDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActualID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ActivityGroupID" Type="int" />
+          <Property Name="ActivityID" Type="int" />
+          <Property Name="NumActivities" Type="int" />
+          <Property Name="Amount" Type="int" />
+        </EntityType>
+        <EntityType Name="Advance">
+          <Key>
+            <PropertyRef Name="AdvanceID" />
+          </Key>
+          <Property Name="AdvanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Period" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProcessLevel" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="AdvanceDetail">
+          <Key>
+            <PropertyRef Name="AdvanceDetailID" />
+          </Key>
+          <Property Name="AdvanceDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdvanceID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ActivityGroupID" Type="int" />
+          <Property Name="ActivityID" Type="int" />
+          <Property Name="NumActivities" Type="int" />
+          <Property Name="Amount" Type="int" />
+        </EntityType>
+        <EntityType Name="Budget">
+          <Key>
+            <PropertyRef Name="BudgetID" />
+          </Key>
+          <Property Name="BudgetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Period" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProcessLevel" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Version" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="BudgetDetail">
+          <Key>
+            <PropertyRef Name="BudgetDetailID" />
+          </Key>
+          <Property Name="BudgetDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BudgetID" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="ActivityGroupID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Percent" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Hospital">
+          <Key>
+            <PropertyRef Name="HospitalID" />
+          </Key>
+          <Property Name="HospitalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HospitalName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="HospitalType" Type="int" Nullable="false" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Activity_ActivityGroup">
+          <End Role="ActivityGroup" Type="Self.ActivityGroup" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityGroup">
+              <PropertyRef Name="ActivityGroupID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActualByFinanceDetail_ActualByFinance">
+          <End Role="ActualByFinance" Type="Self.ActualByFinance" Multiplicity="1" />
+          <End Role="ActualByFinanceDetail" Type="Self.ActualByFinanceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActualByFinance">
+              <PropertyRef Name="ActualByFinanceID" />
+            </Principal>
+            <Dependent Role="ActualByFinanceDetail">
+              <PropertyRef Name="ActualByFinanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActualDetail_Actual">
+          <End Role="Actual" Type="Self.Actual" Multiplicity="1" />
+          <End Role="ActualDetail" Type="Self.ActualDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actual">
+              <PropertyRef Name="ActualID" />
+            </Principal>
+            <Dependent Role="ActualDetail">
+              <PropertyRef Name="ActualID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvanceDetail_Advance">
+          <End Role="Advance" Type="Self.Advance" Multiplicity="1" />
+          <End Role="AdvanceDetail" Type="Self.AdvanceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advance">
+              <PropertyRef Name="AdvanceID" />
+            </Principal>
+            <Dependent Role="AdvanceDetail">
+              <PropertyRef Name="AdvanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BudgetDetail_Budget">
+          <End Role="Budget" Type="Self.Budget" Multiplicity="1" />
+          <End Role="BudgetDetail" Type="Self.BudgetDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="BudgetID" />
+            </Principal>
+            <Dependent Role="BudgetDetail">
+              <PropertyRef Name="BudgetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hospital_Sector">
+          <End Role="Sector" Type="Self.Sector" Multiplicity="0..1" />
+          <End Role="Hospital" Type="Self.Hospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="SectorID" />
+            </Principal>
+            <Dependent Role="Hospital">
+              <PropertyRef Name="SectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sector_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Sector" Type="Self.Sector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Sector">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServierModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityGroup" EntityType="Self.ActivityGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Actual" EntityType="Self.Actual" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActualByFinance" EntityType="Self.ActualByFinance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActualByFinanceDetail" EntityType="Self.ActualByFinanceDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActualDetail" EntityType="Self.ActualDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advance" EntityType="Self.Advance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvanceDetail" EntityType="Self.AdvanceDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Budget" EntityType="Self.Budget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BudgetDetail" EntityType="Self.BudgetDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hospital" EntityType="Self.Hospital" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sector" EntityType="Self.Sector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activity_ActivityGroup" Association="Self.FK_Activity_ActivityGroup">
+            <End Role="ActivityGroup" EntitySet="ActivityGroup" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActualByFinanceDetail_ActualByFinance" Association="Self.FK_ActualByFinanceDetail_ActualByFinance">
+            <End Role="ActualByFinance" EntitySet="ActualByFinance" />
+            <End Role="ActualByFinanceDetail" EntitySet="ActualByFinanceDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActualDetail_Actual" Association="Self.FK_ActualDetail_Actual">
+            <End Role="Actual" EntitySet="Actual" />
+            <End Role="ActualDetail" EntitySet="ActualDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvanceDetail_Advance" Association="Self.FK_AdvanceDetail_Advance">
+            <End Role="Advance" EntitySet="Advance" />
+            <End Role="AdvanceDetail" EntitySet="AdvanceDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BudgetDetail_Budget" Association="Self.FK_BudgetDetail_Budget">
+            <End Role="Budget" EntitySet="Budget" />
+            <End Role="BudgetDetail" EntitySet="BudgetDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hospital_Sector" Association="Self.FK_Hospital_Sector">
+            <End Role="Sector" EntitySet="Sector" />
+            <End Role="Hospital" EntitySet="Hospital" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sector_Region" Association="Self.FK_Sector_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Sector" EntitySet="Sector" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServierModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityType" Type="Int32" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ActivityGroup" Relationship="Self.FK_Activity_ActivityGroup" FromRole="Activity" ToRole="ActivityGroup" />
+        </EntityType>
+        <EntityType Name="ActivityGroup">
+          <Key>
+            <PropertyRef Name="ActivityGroupID" />
+          </Key>
+          <Property Name="ActivityGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityGroupCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityGroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityGroupType" Type="Int32" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activities" Relationship="Self.FK_Activity_ActivityGroup" FromRole="ActivityGroup" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Actual">
+          <Key>
+            <PropertyRef Name="ActualID" />
+          </Key>
+          <Property Name="ActualID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessLevel" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="InputType" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="ActualDetails" Relationship="Self.FK_ActualDetail_Actual" FromRole="Actual" ToRole="ActualDetail" />
+        </EntityType>
+        <EntityType Name="ActualByFinance">
+          <Key>
+            <PropertyRef Name="ActualByFinanceID" />
+          </Key>
+          <Property Name="ActualByFinanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="ActualByFinanceDetails" Relationship="Self.FK_ActualByFinanceDetail_ActualByFinance" FromRole="ActualByFinance" ToRole="ActualByFinanceDetail" />
+        </EntityType>
+        <EntityType Name="ActualByFinanceDetail">
+          <Key>
+            <PropertyRef Name="ActualByFinanceDetailID" />
+          </Key>
+          <Property Name="ActualByFinanceDetailID" Type="Int32" Nullable="false" />
+          <Property Name="ActualByFinanceID" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="UserID" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AmountByClearance" Type="Int32" />
+          <Property Name="AmountByCreditCard" Type="Int32" />
+          <Property Name="AmountByVoucher" Type="Int32" />
+          <NavigationProperty Name="ActualByFinance" Relationship="Self.FK_ActualByFinanceDetail_ActualByFinance" FromRole="ActualByFinanceDetail" ToRole="ActualByFinance" />
+        </EntityType>
+        <EntityType Name="ActualDetail">
+          <Key>
+            <PropertyRef Name="ActualDetailID" />
+          </Key>
+          <Property Name="ActualDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActualID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ActivityGroupID" Type="Int32" />
+          <Property Name="ActivityID" Type="Int32" />
+          <Property Name="NumActivities" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <NavigationProperty Name="Actual" Relationship="Self.FK_ActualDetail_Actual" FromRole="ActualDetail" ToRole="Actual" />
+        </EntityType>
+        <EntityType Name="Advance">
+          <Key>
+            <PropertyRef Name="AdvanceID" />
+          </Key>
+          <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Period" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessLevel" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AdvanceDetails" Relationship="Self.FK_AdvanceDetail_Advance" FromRole="Advance" ToRole="AdvanceDetail" />
+        </EntityType>
+        <EntityType Name="AdvanceDetail">
+          <Key>
+            <PropertyRef Name="AdvanceDetailID" />
+          </Key>
+          <Property Name="AdvanceDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdvanceID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ActivityGroupID" Type="Int32" />
+          <Property Name="ActivityID" Type="Int32" />
+          <Property Name="NumActivities" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <NavigationProperty Name="Advance" Relationship="Self.FK_AdvanceDetail_Advance" FromRole="AdvanceDetail" ToRole="Advance" />
+        </EntityType>
+        <EntityType Name="Budget">
+          <Key>
+            <PropertyRef Name="BudgetID" />
+          </Key>
+          <Property Name="BudgetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Period" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessLevel" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Version" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="BudgetDetails" Relationship="Self.FK_BudgetDetail_Budget" FromRole="Budget" ToRole="BudgetDetail" />
+        </EntityType>
+        <EntityType Name="BudgetDetail">
+          <Key>
+            <PropertyRef Name="BudgetDetailID" />
+          </Key>
+          <Property Name="BudgetDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BudgetID" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="ActivityGroupID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Percent" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Budget" Relationship="Self.FK_BudgetDetail_Budget" FromRole="BudgetDetail" ToRole="Budget" />
+        </EntityType>
+        <EntityType Name="Hospital">
+          <Key>
+            <PropertyRef Name="HospitalID" />
+          </Key>
+          <Property Name="HospitalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HospitalName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HospitalType" Type="Int32" Nullable="false" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sector" Relationship="Self.FK_Hospital_Sector" FromRole="Hospital" ToRole="Sector" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sectors" Relationship="Self.FK_Sector_Region" FromRole="Region" ToRole="Sector" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hospitals" Relationship="Self.FK_Hospital_Sector" FromRole="Sector" ToRole="Hospital" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Sector_Region" FromRole="Sector" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Activity_ActivityGroup">
+          <End Role="ActivityGroup" Type="Self.ActivityGroup" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityGroup">
+              <PropertyRef Name="ActivityGroupID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActualDetail_Actual">
+          <End Role="Actual" Type="Self.Actual" Multiplicity="1" />
+          <End Role="ActualDetail" Type="Self.ActualDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actual">
+              <PropertyRef Name="ActualID" />
+            </Principal>
+            <Dependent Role="ActualDetail">
+              <PropertyRef Name="ActualID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActualByFinanceDetail_ActualByFinance">
+          <End Role="ActualByFinance" Type="Self.ActualByFinance" Multiplicity="1" />
+          <End Role="ActualByFinanceDetail" Type="Self.ActualByFinanceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActualByFinance">
+              <PropertyRef Name="ActualByFinanceID" />
+            </Principal>
+            <Dependent Role="ActualByFinanceDetail">
+              <PropertyRef Name="ActualByFinanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvanceDetail_Advance">
+          <End Role="Advance" Type="Self.Advance" Multiplicity="1" />
+          <End Role="AdvanceDetail" Type="Self.AdvanceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advance">
+              <PropertyRef Name="AdvanceID" />
+            </Principal>
+            <Dependent Role="AdvanceDetail">
+              <PropertyRef Name="AdvanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BudgetDetail_Budget">
+          <End Role="Budget" Type="Self.Budget" Multiplicity="1" />
+          <End Role="BudgetDetail" Type="Self.BudgetDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="BudgetID" />
+            </Principal>
+            <Dependent Role="BudgetDetail">
+              <PropertyRef Name="BudgetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hospital_Sector">
+          <End Role="Sector" Type="Self.Sector" Multiplicity="0..1" />
+          <End Role="Hospital" Type="Self.Hospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="SectorID" />
+            </Principal>
+            <Dependent Role="Hospital">
+              <PropertyRef Name="SectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sector_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Sector" Type="Self.Sector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Sector">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServierEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="Self.Activity" />
+          <EntitySet Name="ActivityGroups" EntityType="Self.ActivityGroup" />
+          <EntitySet Name="Actuals" EntityType="Self.Actual" />
+          <EntitySet Name="ActualByFinances" EntityType="Self.ActualByFinance" />
+          <EntitySet Name="ActualByFinanceDetails" EntityType="Self.ActualByFinanceDetail" />
+          <EntitySet Name="ActualDetails" EntityType="Self.ActualDetail" />
+          <EntitySet Name="Advances" EntityType="Self.Advance" />
+          <EntitySet Name="AdvanceDetails" EntityType="Self.AdvanceDetail" />
+          <EntitySet Name="Budgets" EntityType="Self.Budget" />
+          <EntitySet Name="BudgetDetails" EntityType="Self.BudgetDetail" />
+          <EntitySet Name="Hospitals" EntityType="Self.Hospital" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Sectors" EntityType="Self.Sector" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Activity_ActivityGroup" Association="Self.FK_Activity_ActivityGroup">
+            <End Role="ActivityGroup" EntitySet="ActivityGroups" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActualDetail_Actual" Association="Self.FK_ActualDetail_Actual">
+            <End Role="Actual" EntitySet="Actuals" />
+            <End Role="ActualDetail" EntitySet="ActualDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActualByFinanceDetail_ActualByFinance" Association="Self.FK_ActualByFinanceDetail_ActualByFinance">
+            <End Role="ActualByFinance" EntitySet="ActualByFinances" />
+            <End Role="ActualByFinanceDetail" EntitySet="ActualByFinanceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvanceDetail_Advance" Association="Self.FK_AdvanceDetail_Advance">
+            <End Role="Advance" EntitySet="Advances" />
+            <End Role="AdvanceDetail" EntitySet="AdvanceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BudgetDetail_Budget" Association="Self.FK_BudgetDetail_Budget">
+            <End Role="Budget" EntitySet="Budgets" />
+            <End Role="BudgetDetail" EntitySet="BudgetDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hospital_Sector" Association="Self.FK_Hospital_Sector">
+            <End Role="Sector" EntitySet="Sectors" />
+            <End Role="Hospital" EntitySet="Hospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sector_Region" Association="Self.FK_Sector_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Sector" EntitySet="Sectors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServierModelStoreContainer" CdmEntityContainer="ServierEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="ServierModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+                <ScalarProperty Name="ActivityGroupID" ColumnName="ActivityGroupID" />
+                <ScalarProperty Name="ActivityType" ColumnName="ActivityType" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityGroups">
+            <EntityTypeMapping TypeName="ServierModel.ActivityGroup">
+              <MappingFragment StoreEntitySet="ActivityGroup">
+                <ScalarProperty Name="ActivityGroupID" ColumnName="ActivityGroupID" />
+                <ScalarProperty Name="ActivityGroupCode" ColumnName="ActivityGroupCode" />
+                <ScalarProperty Name="ActivityGroupName" ColumnName="ActivityGroupName" />
+                <ScalarProperty Name="ActivityGroupType" ColumnName="ActivityGroupType" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Actuals">
+            <EntityTypeMapping TypeName="ServierModel.Actual">
+              <MappingFragment StoreEntitySet="Actual">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ActualID" ColumnName="ActualID" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ProcessLevel" ColumnName="ProcessLevel" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InputType" ColumnName="InputType" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActualByFinances">
+            <EntityTypeMapping TypeName="ServierModel.ActualByFinance">
+              <MappingFragment StoreEntitySet="ActualByFinance">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ActualByFinanceID" ColumnName="ActualByFinanceID" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActualByFinanceDetails">
+            <EntityTypeMapping TypeName="ServierModel.ActualByFinanceDetail">
+              <MappingFragment StoreEntitySet="ActualByFinanceDetail">
+                <ScalarProperty Name="ActualByFinanceDetailID" ColumnName="ActualByFinanceDetailID" />
+                <ScalarProperty Name="ActualByFinanceID" ColumnName="ActualByFinanceID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AmountByClearance" ColumnName="AmountByClearance" />
+                <ScalarProperty Name="AmountByCreditCard" ColumnName="AmountByCreditCard" />
+                <ScalarProperty Name="AmountByVoucher" ColumnName="AmountByVoucher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActualDetails">
+            <EntityTypeMapping TypeName="ServierModel.ActualDetail">
+              <MappingFragment StoreEntitySet="ActualDetail">
+                <ScalarProperty Name="ActualDetailID" ColumnName="ActualDetailID" />
+                <ScalarProperty Name="ActualID" ColumnName="ActualID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ActivityGroupID" ColumnName="ActivityGroupID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="NumActivities" ColumnName="NumActivities" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advances">
+            <EntityTypeMapping TypeName="ServierModel.Advance">
+              <MappingFragment StoreEntitySet="Advance">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ProcessLevel" ColumnName="ProcessLevel" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvanceDetails">
+            <EntityTypeMapping TypeName="ServierModel.AdvanceDetail">
+              <MappingFragment StoreEntitySet="AdvanceDetail">
+                <ScalarProperty Name="AdvanceDetailID" ColumnName="AdvanceDetailID" />
+                <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ActivityGroupID" ColumnName="ActivityGroupID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="NumActivities" ColumnName="NumActivities" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Budgets">
+            <EntityTypeMapping TypeName="ServierModel.Budget">
+              <MappingFragment StoreEntitySet="Budget">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BudgetID" ColumnName="BudgetID" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ProcessLevel" ColumnName="ProcessLevel" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BudgetDetails">
+            <EntityTypeMapping TypeName="ServierModel.BudgetDetail">
+              <MappingFragment StoreEntitySet="BudgetDetail">
+                <ScalarProperty Name="BudgetDetailID" ColumnName="BudgetDetailID" />
+                <ScalarProperty Name="BudgetID" ColumnName="BudgetID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ActivityGroupID" ColumnName="ActivityGroupID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Percent" ColumnName="Percent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hospitals">
+            <EntityTypeMapping TypeName="ServierModel.Hospital">
+              <MappingFragment StoreEntitySet="Hospital">
+                <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="HospitalType" ColumnName="HospitalType" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ServierModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="ServierModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ServierModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sectors">
+            <EntityTypeMapping TypeName="ServierModel.Sector">
+              <MappingFragment StoreEntitySet="Sector">
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="SectorName" ColumnName="SectorName" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ServierModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db0e5ac74fe64f71b044e2d78a33c62c" Name="Diagram1">
+        <EntityTypeShape EntityType="ServierModel.Activity" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.ActivityGroup" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Actual" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.ActualByFinance" Width="1.5" PointX="7.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.ActualByFinanceDetail" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.ActualDetail" Width="1.5" PointX="10" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Advance" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.AdvanceDetail" Width="1.5" PointX="8" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Budget" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.BudgetDetail" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Hospital" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Product" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Region" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Role" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.Sector" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServierModel.User" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="ServierModel.FK_Activity_ActivityGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="ServierModel.FK_ActualDetail_Actual" ManuallyRouted="false" />
+        <AssociationConnector Association="ServierModel.FK_ActualByFinanceDetail_ActualByFinance" ManuallyRouted="false" />
+        <AssociationConnector Association="ServierModel.FK_AdvanceDetail_Advance" ManuallyRouted="false" />
+        <AssociationConnector Association="ServierModel.FK_BudgetDetail_Budget" ManuallyRouted="false" />
+        <AssociationConnector Association="ServierModel.FK_Hospital_Sector" ManuallyRouted="false" />
+        <AssociationConnector Association="ServierModel.FK_Sector_Region" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
